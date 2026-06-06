@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IntegraSystem — Brand Book & UI Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <style>
+    :root {
+      --radius: var(--btn-primary-radius, 10px);
+      --font: var(--font-family);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--dark-gray);
+      background: var(--white);
+    }
+
+    /* ── Layout ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      background: var(--deep-black);
+      color: var(--dark-text);
+      padding: 32px 24px;
+      overflow-y: auto;
+      border-right: 1px solid var(--dark-border);
+    }
+
+    .sidebar-logo {
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--dark-border);
+    }
+
+    .sidebar-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--medium-gray);
+      margin-bottom: 16px;
+    }
+
+    .nav-list { list-style: none; }
+
+    .nav-list li { margin-bottom: 4px; }
+
+    .nav-list a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--dark-text);
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .nav-list a:hover,
+    .nav-list a.active {
+      background: var(--dark-surface);
+      color: var(--integra-cyan);
+    }
+
+    .main { min-width: 0; }
+
+    .content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 64px 48px 96px;
+    }
+
+    /* ── Cover ── */
+    .cover {
+      background: var(--white);
+      border-bottom: 1px solid var(--border-gray);
+      padding: 80px 48px;
+    }
+
+    .cover-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .cover-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--integra-blue);
+      background: rgba(0, 82, 204, 0.08);
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    .cover h1 {
+      font-size: 56px;
+      font-weight: 800;
+      color: var(--graphite);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .cover h1 span { color: var(--integra-blue); }
+
+    .cover-desc {
+      font-size: 18px;
+      color: var(--medium-gray);
+      max-width: 480px;
+      margin-bottom: 32px;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 32px;
+      font-size: 14px;
+      color: var(--medium-gray);
+    }
+
+    .cover-meta strong {
+      display: block;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--graphite);
+      margin-bottom: 2px;
+    }
+
+    .cover-visual {
+      background: var(--light-gray);
+      border: 1px solid var(--border-gray);
+      border-radius: 16px;
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    /* ── Logo component ── */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .logo-integra {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-system {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .logo--light .logo-mark { background: var(--integra-blue); color: var(--white); }
+    .logo--light .logo-integra { color: var(--graphite); }
+    .logo--light .logo-system { color: var(--integra-blue); }
+
+    .logo--dark .logo-mark { background: var(--integra-blue); color: var(--white); }
+    .logo--dark .logo-integra { color: var(--white); }
+    .logo--dark .logo-system { color: var(--integra-blue-light); }
+
+    .logo--large .logo-mark { width: 72px; height: 72px; font-size: 24px; border-radius: 14px; }
+    .logo--large .logo-integra { font-size: 32px; }
+    .logo--large .logo-system { font-size: 16px; }
+
+    /* ── Sections ── */
+    .section {
+      padding-top: 80px;
+      scroll-margin-top: 32px;
+    }
+
+    .section-header {
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-gray);
+    }
+
+    .section-tag {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--integra-cyan);
+      margin-bottom: 8px;
+    }
+
+    .section-header h2 {
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--graphite);
+      line-height: 1.2;
+    }
+
+    .section-header p {
+      margin-top: 12px;
+      font-size: 18px;
+      color: var(--medium-gray);
+      max-width: 640px;
+    }
+
+    .subsection { margin-bottom: 48px; }
+
+    .subsection h3 {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--graphite);
+      margin-bottom: 20px;
+    }
+
+    .subsection-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--medium-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    /* ── Color swatches ── */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .swatch {
+      border: 1px solid var(--border-gray);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+
+    .swatch:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .swatch-color { height: 96px; }
+
+    .swatch-info {
+      padding: 14px 16px;
+      background: var(--white);
+    }
+
+    .swatch-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--graphite);
+      margin-bottom: 2px;
+    }
+
+    .swatch-hex {
+      font-size: 13px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      color: var(--medium-gray);
+    }
+
+    .swatch-use {
+      font-size: 12px;
+      color: var(--medium-gray);
+      margin-top: 4px;
+    }
+
+    /* ── Dark theme preview ── */
+    .dark-preview {
+      background: var(--deep-black);
+      border-radius: 16px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .dark-swatch {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--dark-border);
+    }
+
+    .dark-swatch-color { height: 72px; }
+
+    .dark-swatch-info {
+      padding: 12px;
+      background: var(--dark-surface);
+    }
+
+    .dark-swatch-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dark-text);
+    }
+
+    .dark-swatch-hex {
+      font-size: 12px;
+      font-family: monospace;
+      color: var(--medium-gray);
+    }
+
+    /* ── Typography ── */
+    .type-scale { display: flex; flex-direction: column; gap: 0; }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 120px 1fr 80px;
+      align-items: baseline;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-gray);
+      gap: 24px;
+    }
+
+    .type-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--medium-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .type-size {
+      font-size: 13px;
+      font-family: monospace;
+      color: var(--medium-gray);
+      text-align: right;
+    }
+
+    .type-h1 { font-size: 56px; font-weight: 700; color: var(--graphite); line-height: 1.1; }
+    .type-h2 { font-size: 40px; font-weight: 700; color: var(--graphite); line-height: 1.2; }
+    .type-h3 { font-size: 32px; font-weight: 600; color: var(--graphite); line-height: 1.25; }
+    .type-h4 { font-size: 24px; font-weight: 600; color: var(--graphite); line-height: 1.3; }
+    .type-body { font-size: 18px; font-weight: 400; color: var(--dark-gray); }
+    .type-small { font-size: 14px; font-weight: 400; color: var(--medium-gray); }
+
+    .font-stack {
+      background: var(--light-gray);
+      border: 1px solid var(--border-gray);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-top: 24px;
+    }
+
+    .font-stack-name {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--graphite);
+      margin-bottom: 8px;
+    }
+
+    .font-stack-alts {
+      font-size: 14px;
+      color: var(--medium-gray);
+    }
+
+    .font-stack-alts span {
+      display: inline-block;
+      background: var(--white);
+      border: 1px solid var(--border-gray);
+      border-radius: 6px;
+      padding: 4px 12px;
+      margin: 4px 4px 0 0;
+      font-size: 13px;
+    }
+
+    /* ── Buttons ── */
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-family: var(--font);
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--integra-blue);
+      color: var(--white);
+    }
+
+    .btn-primary:hover { background: var(--integra-blue-hover); }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--integra-blue);
+      color: var(--integra-blue);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(0, 82, 204, 0.06);
+    }
+
+    .btn-spec {
+      background: var(--light-gray);
+      border: 1px solid var(--border-gray);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 13px;
+      color: var(--graphite);
+      line-height: 1.8;
+    }
+
+    .btn-spec .prop { color: var(--integra-blue); }
+    .btn-spec .val { color: var(--integra-cyan); }
+
+    /* ── Spacing ── */
+    .spacing-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: flex-end;
+    }
+
+    .spacing-item { text-align: center; }
+
+    .spacing-bar {
+      background: var(--integra-blue);
+      border-radius: 4px;
+      margin-bottom: 8px;
+      opacity: 0.85;
+    }
+
+    .spacing-val {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--graphite);
+      font-family: monospace;
+    }
+
+    /* ── Grid demo ── */
+    .grid-demo {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 8px;
+    }
+
+    .grid-col {
+      background: rgba(0, 82, 204, 0.08);
+      border: 1px dashed rgba(0, 82, 204, 0.25);
+      border-radius: 4px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--integra-blue);
+    }
+
+    .grid-meta {
+      margin-top: 16px;
+      font-size: 14px;
+      color: var(--medium-gray);
+      display: flex;
+      gap: 32px;
+    }
+
+    .grid-meta code {
+      background: var(--light-gray);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 13px;
+      color: var(--graphite);
+    }
+
+    /* ── Icons ── */
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 16px;
+    }
+
+    .icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 24px 16px;
+      background: var(--light-gray);
+      border: 1px solid var(--border-gray);
+      border-radius: var(--radius);
+    }
+
+    .icon-item svg {
+      width: 32px;
+      height: 32px;
+      stroke: var(--integra-blue);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon-item span {
+      font-size: 12px;
+      color: var(--medium-gray);
+    }
+
+    /* ── Logo variants ── */
+    .logo-variants {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .logo-variant {
+      border-radius: 16px;
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .logo-variant--light {
+      background: var(--white);
+      border: 1px solid var(--border-gray);
+    }
+
+    .logo-variant--dark {
+      background: var(--deep-black);
+    }
+
+    .logo-variant-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .logo-variant--light .logo-variant-label { color: var(--medium-gray); }
+    .logo-variant--dark .logo-variant-label { color: var(--medium-gray); }
+
+    .logo-rules {
+      width: 100%;
+      font-size: 13px;
+      font-family: monospace;
+      line-height: 1.8;
+      padding: 16px;
+      border-radius: 8px;
+    }
+
+    .logo-variant--light .logo-rules {
+      background: var(--light-gray);
+      color: var(--graphite);
+    }
+
+    .logo-variant--dark .logo-rules {
+      background: var(--dark-surface);
+      color: var(--dark-text);
+    }
+
+    /* ── Brand showcase ── */
+    .brand-showcase-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .brand-showcase {
+      border: 1px solid var(--border-gray);
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--deep-black);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+    }
+
+    .brand-showcase--card {
+      background: var(--light-gray);
+    }
+
+    .brand-showcase--card img {
+      max-width: 720px;
+      margin: 40px auto;
+      padding: 0 24px;
+      width: calc(100% - 48px);
+      border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .brand-showcase img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .brand-showcase-caption {
+      padding: 20px 28px;
+      font-size: 14px;
+      color: var(--medium-gray);
+      background: var(--white);
+      border-top: 1px solid var(--border-gray);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand-showcase-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .brand-showcase-tag {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: var(--light-gray);
+      border: 1px solid var(--border-gray);
+      color: var(--graphite);
+    }
+
+    /* ── Hero mockup (legacy) ── */
+    .hero-mockup {
+      background: var(--white);
+      border: 1px solid var(--border-gray);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .hero-mockup-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      border-bottom: 1px solid var(--border-gray);
+    }
+
+    .hero-mockup-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      padding: 64px 40px;
+      align-items: center;
+    }
+
+    .hero-mockup-text h3 {
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--graphite);
+      line-height: 1.15;
+      margin-bottom: 32px;
+    }
+
+    .hero-mockup-text h3 em {
+      font-style: normal;
+      color: var(--integra-blue);
+    }
+
+    .hero-mockup-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .hero-card {
+      background: var(--light-gray);
+      border: 1px solid var(--border-gray);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+    }
+
+    .hero-card svg {
+      width: 40px;
+      height: 40px;
+      stroke: var(--integra-blue);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .hero-card span {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--graphite);
+    }
+
+    .hero-card:first-child { grid-row: span 2; justify-content: center; }
+    .hero-card:first-child svg { width: 56px; height: 56px; }
+
+    /* ── Business card ── */
+    .cards-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .biz-card {
+      aspect-ratio: 1.75 / 1;
+      border-radius: 12px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    .biz-card--front {
+      background: var(--deep-black);
+    }
+
+    .biz-card--back {
+      background: var(--white);
+      border: 1px solid var(--border-gray);
+    }
+
+    .biz-card-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--medium-gray);
+      margin-bottom: 16px;
+    }
+
+    .biz-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .biz-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--graphite);
+    }
+
+    .biz-contact-item svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--integra-blue);
+      fill: none;
+      stroke-width: 1.5;
+      flex-shrink: 0;
+    }
+
+    .biz-person {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--graphite);
+      margin-bottom: 4px;
+    }
+
+    .biz-role {
+      font-size: 13px;
+      color: var(--medium-gray);
+    }
+
+    /* ── Brand formula ── */
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+    }
+
+    .color-roles {
+      background: var(--light-gray);
+      border: 1px solid var(--border-gray);
+      border-radius: var(--radius-md);
+      padding: 28px 32px;
+      margin-bottom: 48px;
+    }
+
+    .color-roles h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--graphite);
+      margin-bottom: 16px;
+    }
+
+    .color-roles-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .color-role-item strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--graphite);
+      margin-bottom: 4px;
+    }
+
+    .color-role-item code {
+      font-size: 13px;
+      color: var(--integra-blue);
+      background: var(--white);
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--border-gray);
+    }
+
+    .color-role-item p {
+      font-size: 13px;
+      color: var(--medium-gray);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .formula-item {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-gray);
+    }
+
+    .formula-color { height: 80px; }
+
+    .formula-info {
+      padding: 14px;
+      text-align: center;
+    }
+
+    .formula-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--graphite);
+    }
+
+    .formula-hex {
+      font-size: 12px;
+      font-family: monospace;
+      color: var(--medium-gray);
+    }
+
+    /* ── Usage tags ── */
+    .usage-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .usage-tag {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 20px;
+      background: var(--light-gray);
+      border: 1px solid var(--border-gray);
+      color: var(--graphite);
+    }
+
+    /* ── Export ── */
+    .export-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .export-card {
+      background: var(--light-gray);
+      border: 1px solid var(--border-gray);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .export-card h4 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--graphite);
+    }
+
+    .export-card p {
+      font-size: 14px;
+      color: var(--medium-gray);
+      line-height: 1.5;
+    }
+
+    .export-card code {
+      font-size: 13px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      background: var(--white);
+      border: 1px solid var(--border-gray);
+      border-radius: 6px;
+      padding: 2px 8px;
+      color: var(--integra-blue);
+    }
+
+    .export-snippet {
+      background: var(--deep-black);
+      color: var(--dark-text);
+      border-radius: 8px;
+      padding: 20px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      overflow-x: auto;
+    }
+
+    .export-snippet .comment { color: var(--medium-gray); }
+    .export-snippet .tag { color: var(--integra-cyan); }
+    .export-snippet .attr { color: #93C5FD; }
+    .export-snippet .val { color: #86EFAC; }
+
+    /* ── Toast ── */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--graphite);
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.3s;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* ── Footer ── */
+    .kit-footer {
+      background: var(--light-gray);
+      border-top: 1px solid var(--border-gray);
+      padding: 32px 48px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--medium-gray);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { position: relative; height: auto; }
+      .cover-inner { grid-template-columns: 1fr; }
+      .logo-variants, .cards-row, .hero-mockup-body { grid-template-columns: 1fr; }
+      .color-roles-list { grid-template-columns: 1fr; }
+      .formula-grid { grid-template-columns: repeat(3, 1fr); }
+      .export-grid { grid-template-columns: 1fr; }
+      .dark-preview { grid-template-columns: repeat(2, 1fr); }
+      .type-row { grid-template-columns: 80px 1fr; }
+      .type-size { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .content { padding: 40px 24px 64px; }
+      .cover { padding: 48px 24px; }
+      .cover h1 { font-size: 36px; }
+      .section-header h2 { font-size: 28px; }
+      .formula-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo logo--dark">
+        <div class="logo-mark">IS</div>
+        <div class="logo-text">
+          <span class="logo-integra">Integra</span>
+          <span class="logo-system">System</span>
+        </div>
+      </div>
+    </div>
+    <p class="sidebar-label">Brand Book</p>
+    <ul class="nav-list">
+      <li><a href="#colors">Цвета</a></li>
+      <li><a href="#dark-theme">Темная тема</a></li>
+      <li><a href="#typography">Типографика</a></li>
+      <li><a href="#buttons">Кнопки</a></li>
+      <li><a href="#logo">Логотип</a></li>
+      <li><a href="#layout">Layout</a></li>
+      <li><a href="#icons">Иконки</a></li>
+      <li><a href="#application">Макет</a></li>
+      <li><a href="#hero">Hero</a></li>
+      <li><a href="#formula">Формула бренда</a></li>
+      <li><a href="#export">Экспорт</a></li>
+    </ul>
+  </aside>
+
+  <div class="main">
+    <!-- Cover -->
+    <header class="cover">
+      <div class="cover-inner">
+        <div>
+          <span class="cover-badge">UI Kit v1.1 — Final</span>
+          <h1>Integra<span>System</span><br>Brand Book</h1>
+          <p class="cover-desc">Системный интегратор. Поставщик серверов и инфраструктурных решений. Enterprise B2B-бренд — консервативный, надежный, без срока годности.</p>
+          <div class="cover-meta">
+            <div><strong>Inter</strong>Шрифт</div>
+            <div><strong>1280px</strong>Max width</div>
+            <div><strong>12 col</strong>Grid</div>
+          </div>
+        </div>
+        <div class="cover-visual">
+          <div class="logo logo--light logo--large">
+            <div class="logo-mark">IS</div>
+            <div class="logo-text">
+              <span class="logo-integra">Integra</span>
+              <span class="logo-system">System</span>
+            </div>
+          </div>
+          <div class="formula-grid" style="width:100%;">
+            <div class="formula-item"><div class="formula-color" style="background:#0052CC"></div></div>
+            <div class="formula-item"><div class="formula-color" style="background:#3B82F6"></div></div>
+            <div class="formula-item"><div class="formula-color" style="background:#2D3748"></div></div>
+            <div class="formula-item"><div class="formula-color" style="background:#FFFFFF;border-bottom:1px solid #E5E7EB"></div></div>
+            <div class="formula-item"><div class="formula-color" style="background:#111827"></div></div>
+            <div class="formula-item"><div class="formula-color" style="background:#00B4D8"></div></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <!-- Colors -->
+      <section class="section" id="colors">
+        <div class="section-header">
+          <p class="section-tag">01 — Palette</p>
+          <h2>Цвета бренда</h2>
+          <p>Три синих с разными ролями. Cyan — только для мелких UI-элементов. Клик по swatch копирует HEX.</p>
+        </div>
+
+        <div class="color-roles">
+          <h3>Роли цветов</h3>
+          <div class="color-roles-list">
+            <div class="color-role-item">
+              <strong>Integra Blue</strong>
+              <code>#0052CC</code>
+              <p>Основной брендовый синий. Логотип на светлом, кнопки, главные акценты.</p>
+            </div>
+            <div class="color-role-item">
+              <strong>Blue Light</strong>
+              <code>#3B82F6</code>
+              <p>System на темном фоне. Акценты на Deep Black. Enterprise: Cisco, Dell, HPE.</p>
+            </div>
+            <div class="color-role-item">
+              <strong>Integra Cyan</strong>
+              <code>#00B4D8</code>
+              <p>Только UI-декор: буллеты, разделители, hover, мелкие иконки. Не для логотипа.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <p class="subsection-label">Primary</p>
+          <div class="swatch-grid">
+            <div class="swatch" data-hex="#0052CC">
+              <div class="swatch-color" style="background:#0052CC"></div>
+              <div class="swatch-info">
+                <div class="swatch-name">Integra Blue</div>
+                <div class="swatch-hex">#0052CC</div>
+                <div class="swatch-use">Логотип (светлый), кнопки, ссылки</div>
+              </div>
+            </div>
+            <div class="swatch" data-hex="#3B82F6">
+              <div class="swatch-color" style="background:#3B82F6"></div>
+              <div class="swatch-info">
+                <div class="swatch-name">Blue Light</div>
+                <div class="swatch-hex">#3B82F6</div>
+                <div class="swatch-use">System на темном, акценты на Deep Black</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <p class="subsection-label">Accent (UI only)</p>
+          <div class="swatch-grid">
+            <div class="swatch" data-hex="#00B4D8">
+              <div class="swatch-color" style="background:#00B4D8"></div>
+              <div class="swatch-info">
+                <div class="swatch-name">Integra Cyan</div>
+                <div class="swatch-hex">#00B4D8</div>
+                <div class="swatch-use">Буллеты, разделители, hover, декор</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <p class="subsection-label">Neutral</p>
+          <div class="swatch-grid">
+            <div class="swatch" data-hex="#2D3748">
+              <div class="swatch-color" style="background:#2D3748"></div>
+              <div class="swatch-info">
+                <div class="swatch-name">Graphite</div>
+                <div class="swatch-hex">#2D3748</div>
+                <div class="swatch-use">Заголовки</div>
+              </div>
+            </div>
+            <div class="swatch" data-hex="#4A5568">
+              <div class="swatch-color" style="background:#4A5568"></div>
+              <div class="swatch-info">
+                <div class="swatch-name">Dark Gray</div>
+                <div class="swatch-hex">#4A5568</div>
+                <div class="swatch-use">Основной текст</div>
+              </div>
+            </div>
+            <div class="swatch" data-hex="#68737A">
+              <div class="swatch-color" style="background:#68737A"></div>
+              <div class="swatch-info">
+                <div class="swatch-name">Medium Gray</div>
+                <div class="swatch-hex">#68737A</div>
+                <div class="swatch-use">Вторичный текст</div>
+              </div>
+            </div>
+            <div class="swatch" data-hex="#E5E7EB">
+              <div class="swatch-color" style="background:#E5E7EB"></div>
+              <div class="swatch-info">
+                <div class="swatch-name">Border Gray</div>
+                <div class="swatch-hex">#E5E7EB</div>
+                <div class="swatch-use">Границы</div>
+              </div>
+            </div>
+            <div class="swatch" data-hex="#F8FAFC">
+              <div class="swatch-color" style="background:#F8FAFC;border-bottom:1px solid #E5E7EB"></div>
+              <div class="swatch-info">
+                <div class="swatch-name">Light Gray</div>
+                <div class="swatch-hex">#F8FAFC</div>
+                <div class="swatch-use">Блоки</div>
+              </div>
+            </div>
+            <div class="swatch" data-hex="#FFFFFF">
+              <div class="swatch-color" style="background:#FFFFFF;border-bottom:1px solid #E5E7EB"></div>
+              <div class="swatch-info">
+                <div class="swatch-name">White</div>
+                <div class="swatch-hex">#FFFFFF</div>
+                <div class="swatch-use">Основной фон</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dark theme -->
+      <section class="section" id="dark-theme">
+        <div class="section-header">
+          <p class="section-tag">02 — Dark Mode</p>
+          <h2>Темная тема</h2>
+          <p>Для визиток, выставочных материалов, презентаций и стендов. На темном фоне System — <code style="color:var(--integra-blue-light)">#3B82F6</code>, не Cyan.</p>
+        </div>
+        <div class="dark-preview" style="grid-template-columns: repeat(5, 1fr);">
+          <div class="dark-swatch" data-hex="#3B82F6">
+            <div class="dark-swatch-color" style="background:#3B82F6"></div>
+            <div class="dark-swatch-info">
+              <div class="dark-swatch-name">Blue Light</div>
+              <div class="dark-swatch-hex">#3B82F6</div>
+            </div>
+          </div>
+          <div class="dark-swatch" data-hex="#111827">
+            <div class="dark-swatch-color" style="background:#111827"></div>
+            <div class="dark-swatch-info">
+              <div class="dark-swatch-name">Deep Black</div>
+              <div class="dark-swatch-hex">#111827</div>
+            </div>
+          </div>
+          <div class="dark-swatch" data-hex="#1F2937">
+            <div class="dark-swatch-color" style="background:#1F2937"></div>
+            <div class="dark-swatch-info">
+              <div class="dark-swatch-name">Dark Surface</div>
+              <div class="dark-swatch-hex">#1F2937</div>
+            </div>
+          </div>
+          <div class="dark-swatch" data-hex="#374151">
+            <div class="dark-swatch-color" style="background:#374151"></div>
+            <div class="dark-swatch-info">
+              <div class="dark-swatch-name">Dark Border</div>
+              <div class="dark-swatch-hex">#374151</div>
+            </div>
+          </div>
+          <div class="dark-swatch" data-hex="#E5E7EB">
+            <div class="dark-swatch-color" style="background:#E5E7EB"></div>
+            <div class="dark-swatch-info">
+              <div class="dark-swatch-name">Dark Text</div>
+              <div class="dark-swatch-hex">#E5E7EB</div>
+            </div>
+          </div>
+        </div>
+        <div class="usage-tags">
+          <span class="usage-tag">Визитки</span>
+          <span class="usage-tag">Выставочные материалы</span>
+          <span class="usage-tag">Презентации</span>
+          <span class="usage-tag">Стенды</span>
+        </div>
+      </section>
+
+      <!-- Typography -->
+      <section class="section" id="typography">
+        <div class="section-header">
+          <p class="section-tag">03 — Type</p>
+          <h2>Типографика</h2>
+          <p>Inter — основной шрифт. Чистый, технологичный, хорошо читается в B2B-контексте.</p>
+        </div>
+
+        <div class="font-stack">
+          <div class="font-stack-name">Inter</div>
+          <div class="font-stack-alts">
+            Альтернативы:
+            <span>Montserrat</span>
+            <span>Manrope</span>
+          </div>
+        </div>
+
+        <div class="type-scale" style="margin-top:40px">
+          <div class="type-row">
+            <span class="type-label">H1</span>
+            <span class="type-h1">Интеграция решений</span>
+            <span class="type-size">56px</span>
+          </div>
+          <div class="type-row">
+            <span class="type-label">H2</span>
+            <span class="type-h2">Надежность системы</span>
+            <span class="type-size">40px</span>
+          </div>
+          <div class="type-row">
+            <span class="type-label">H3</span>
+            <span class="type-h3">Серверная инфраструктура</span>
+            <span class="type-size">32px</span>
+          </div>
+          <div class="type-row">
+            <span class="type-label">H4</span>
+            <span class="type-h4">Комплексные IT-решения</span>
+            <span class="type-size">24px</span>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Body</span>
+            <span class="type-body">Поставка, интеграция и сопровождение серверного и сетевого оборудования для enterprise-клиентов.</span>
+            <span class="type-size">18px</span>
+          </div>
+          <div class="type-row">
+            <span class="type-label">Small</span>
+            <span class="type-small">© 2026 IntegraSystem. Все права защищены.</span>
+            <span class="type-size">14px</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Buttons -->
+      <section class="section" id="buttons">
+        <div class="section-header">
+          <p class="section-tag">04 — Components</p>
+          <h2>Кнопки</h2>
+          <p>Primary для главных действий. Secondary — для альтернативных сценариев.</p>
+        </div>
+
+        <div class="subsection">
+          <h3>Primary</h3>
+          <div class="btn-row">
+            <button class="btn btn-primary">Наши решения</button>
+            <button class="btn btn-primary">Связаться с нами</button>
+          </div>
+          <div class="btn-spec">
+            <span class="prop">background</span>: <span class="val">#0052CC</span>;<br>
+            <span class="prop">color</span>: <span class="val">#FFFFFF</span>;<br>
+            <span class="prop">border-radius</span>: <span class="val">10px</span>;<br>
+            <span class="prop">hover</span>: <span class="val">#0045AD</span>;
+          </div>
+        </div>
+
+        <div class="subsection">
+          <h3>Secondary</h3>
+          <div class="btn-row">
+            <button class="btn btn-secondary">Подробнее</button>
+            <button class="btn btn-secondary">Скачать каталог</button>
+          </div>
+          <div class="btn-spec">
+            <span class="prop">background</span>: <span class="val">transparent</span>;<br>
+            <span class="prop">border</span>: <span class="val">1px solid #0052CC</span>;<br>
+            <span class="prop">color</span>: <span class="val">#0052CC</span>;
+          </div>
+        </div>
+      </section>
+
+      <!-- Logo -->
+      <section class="section" id="logo">
+        <div class="section-header">
+          <p class="section-tag">05 — Identity</p>
+          <h2>Логотип</h2>
+          <p>Две версии: для светлого и темного фона. Не менять пропорции и цвета.</p>
+        </div>
+
+        <div class="logo-variants">
+          <div class="logo-variant logo-variant--light">
+            <span class="logo-variant-label">Основная версия</span>
+            <div class="logo logo--light logo--large">
+              <div class="logo-mark">IS</div>
+              <div class="logo-text">
+                <span class="logo-integra">Integra</span>
+                <span class="logo-system">System</span>
+              </div>
+            </div>
+            <div class="logo-rules">
+              IS — #0052CC<br>
+              Integra — #2D3748<br>
+              System — #0052CC
+            </div>
+          </div>
+          <div class="logo-variant logo-variant--dark">
+            <span class="logo-variant-label">На темном фоне</span>
+            <div class="logo logo--dark logo--large">
+              <div class="logo-mark">IS</div>
+              <div class="logo-text">
+                <span class="logo-integra">Integra</span>
+                <span class="logo-system">System</span>
+              </div>
+            </div>
+            <div class="logo-rules">
+              Фон — #111827<br>
+              IS — #FFFFFF<br>
+              Integra — #FFFFFF<br>
+              System — #3B82F6
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Layout -->
+      <section class="section" id="layout">
+        <div class="section-header">
+          <p class="section-tag">06 — Grid</p>
+          <h2>Layout</h2>
+          <p>12-колоночная сетка. Максимальная ширина контента — 1280px.</p>
+        </div>
+
+        <div class="subsection">
+          <h3>Spacing Scale</h3>
+          <div class="spacing-grid">
+            <div class="spacing-item"><div class="spacing-bar" style="width:8px;height:8px"></div><div class="spacing-val">8</div></div>
+            <div class="spacing-item"><div class="spacing-bar" style="width:16px;height:16px"></div><div class="spacing-val">16</div></div>
+            <div class="spacing-item"><div class="spacing-bar" style="width:24px;height:24px"></div><div class="spacing-val">24</div></div>
+            <div class="spacing-item"><div class="spacing-bar" style="width:32px;height:32px"></div><div class="spacing-val">32</div></div>
+            <div class="spacing-item"><div class="spacing-bar" style="width:48px;height:48px"></div><div class="spacing-val">48</div></div>
+            <div class="spacing-item"><div class="spacing-bar" style="width:64px;height:64px"></div><div class="spacing-val">64</div></div>
+            <div class="spacing-item"><div class="spacing-bar" style="width:96px;height:96px"></div><div class="spacing-val">96</div></div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <h3>12-Column Grid</h3>
+          <div class="grid-demo">
+            <div class="grid-col">1</div><div class="grid-col">2</div><div class="grid-col">3</div>
+            <div class="grid-col">4</div><div class="grid-col">5</div><div class="grid-col">6</div>
+            <div class="grid-col">7</div><div class="grid-col">8</div><div class="grid-col">9</div>
+            <div class="grid-col">10</div><div class="grid-col">11</div><div class="grid-col">12</div>
+          </div>
+          <div class="grid-meta">
+            <span>Max width: <code>1280px</code></span>
+            <span>Columns: <code>12</code></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Icons -->
+      <section class="section" id="icons">
+        <div class="section-header">
+          <p class="section-tag">07 — Icons</p>
+          <h2>Иконки</h2>
+          <p>Outline-стиль, тонкие линии, без заливки. Основной цвет — Integra Blue #0052CC. Cyan #00B4D8 — для hover и мелких акцентов.</p>
+        </div>
+
+        <div class="icon-grid">
+          <div class="icon-item">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="6" rx="1"/><rect x="2" y="11" width="20" height="6" rx="1"/><circle cx="6" cy="6" r="1" fill="#0052CC" stroke="none"/><circle cx="6" cy="14" r="1" fill="#0052CC" stroke="none"/></svg>
+            <span>Server</span>
+          </div>
+          <div class="icon-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            <span>Stack</span>
+          </div>
+          <div class="icon-item">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span>Network</span>
+          </div>
+          <div class="icon-item">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Security</span>
+          </div>
+          <div class="icon-item">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>Contact</span>
+          </div>
+          <div class="icon-item">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Location</span>
+          </div>
+          <div class="icon-item">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>Email</span>
+          </div>
+          <div class="icon-item">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <span>Activity</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Brand application mockup -->
+      <section class="section" id="application">
+        <div class="section-header">
+          <p class="section-tag">08 — Application</p>
+          <h2>Применение бренда</h2>
+          <p>Финальный макет: визитка и главная страница сайта в едином стиле IntegraSystem.</p>
+        </div>
+
+        <div class="brand-showcase-stack">
+          <div class="brand-showcase">
+            <img src="images/sample_site.png" alt="IntegraSystem — визитка и главная страница сайта">
+            <div class="brand-showcase-caption">
+              <span>sample_site.png — визитка и homepage hero</span>
+              <div class="brand-showcase-tags">
+                <span class="brand-showcase-tag">Визитка</span>
+                <span class="brand-showcase-tag">Hero</span>
+                <span class="brand-showcase-tag">Навигация</span>
+                <span class="brand-showcase-tag">CTA</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="brand-showcase brand-showcase--card">
+            <img src="images/logo_1.png" alt="IntegraSystem — оборот визитки, логотип и контакты">
+            <div class="brand-showcase-caption">
+              <span>logo_1.png — оборот визитки (белый фон)</span>
+              <div class="brand-showcase-tags">
+                <span class="brand-showcase-tag">Логотип</span>
+                <span class="brand-showcase-tag">System #3B82F6</span>
+                <span class="brand-showcase-tag">Контакты</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subsection" style="margin-top:48px">
+          <h3>Визитка</h3>
+          <p class="type-body" style="margin-bottom:16px">Лицевая сторона — Deep Black (#111827). Integra и IS — белые, System — Blue Light (#3B82F6). Оборот — белый фон, текст Graphite, иконки Integra Blue.</p>
+        </div>
+
+        <div class="subsection">
+          <h3>Главная страница — Hero</h3>
+          <p class="type-body">Белый фон. Заголовок: «Интеграция решений. Надежность системы.» Кнопки: Primary «Наши решения», Secondary «О компании». Справа — фото серверной инфраструктуры.</p>
+        </div>
+      </section>
+
+      <!-- Hero mockup -->
+      <section class="section" id="hero">
+        <div class="section-header">
+          <p class="section-tag">09 — Page</p>
+          <h2>Hero — упрощенный макет</h2>
+          <p>Белый фон. Слева — заголовок, справа — инфраструктурные визуалы. UI Kit-компоненты.</p>
+        </div>
+
+        <div class="hero-mockup">
+          <div class="hero-mockup-nav">
+            <div class="logo logo--light">
+              <div class="logo-mark">IS</div>
+              <div class="logo-text">
+                <span class="logo-integra">Integra</span>
+                <span class="logo-system">System</span>
+              </div>
+            </div>
+            <div style="display:flex;gap:24px;font-size:14px;font-weight:500;color:var(--dark-gray)">
+              <span>Решения</span>
+              <span>О компании</span>
+              <span>Контакты</span>
+            </div>
+          </div>
+          <div class="hero-mockup-body">
+            <div class="hero-mockup-text">
+              <h3>Интеграция решений.<br><em>Надежность системы.</em></h3>
+              <div class="btn-row">
+                <button class="btn btn-primary">Наши решения</button>
+                <button class="btn btn-secondary">Связаться с нами</button>
+              </div>
+            </div>
+            <div class="hero-mockup-visual">
+              <div class="hero-card">
+                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="6" rx="1"/><rect x="2" y="11" width="20" height="6" rx="1"/><rect x="2" y="19" width="20" height="2" rx="1"/></svg>
+                <span>Серверная стойка</span>
+              </div>
+              <div class="hero-card">
+                <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4"/><line x1="9" y1="6" x2="9" y2="6.01"/><line x1="15" y1="6" x2="15" y2="6.01"/><line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/></svg>
+                <span>Дата-центр</span>
+              </div>
+              <div class="hero-card">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><line x1="12" y1="8" x2="5" y2="16"/><line x1="12" y1="8" x2="19" y2="16"/></svg>
+                <span>Сетевая инфраструктура</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Business card -->
+      <section class="section" id="business-card">
+        <div class="section-header">
+          <p class="section-tag">10 — Print</p>
+          <h2>Визитка — упрощенный макет</h2>
+          <p>Лицевая сторона — Deep Black. System — #3B82F6. Оборот — белый с контактами. UI Kit-компоненты.</p>
+        </div>
+
+        <div class="cards-row">
+          <div>
+            <p class="biz-card-label">Лицевая сторона</p>
+            <div class="biz-card biz-card--front">
+              <div class="logo logo--dark">
+                <div class="logo-mark">IS</div>
+                <div class="logo-text">
+                  <span class="logo-integra">Integra</span>
+                  <span class="logo-system">System</span>
+                </div>
+              </div>
+              <div style="font-size:13px;color:var(--medium-gray)">integrasystem.by</div>
+            </div>
+          </div>
+          <div>
+            <p class="biz-card-label">Оборот</p>
+            <div class="biz-card biz-card--back">
+              <div>
+                <div class="biz-person">Иван Петров</div>
+                <div class="biz-role">Директор по продажам</div>
+              </div>
+              <div class="biz-contact">
+                <div class="biz-contact-item">
+                  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  +375 29 123-45-67
+                </div>
+                <div class="biz-contact-item">
+                  <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  info@integrasystem.by
+                </div>
+                <div class="biz-contact-item">
+                  <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Минск, Беларусь
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Brand formula -->
+      <section class="section" id="formula">
+        <div class="section-header">
+          <p class="section-tag">11 — Summary</p>
+          <h2>Итоговая формула бренда</h2>
+          <p>Шесть зафиксированных цветов. Cyan — вспомогательный, только для UI.</p>
+        </div>
+
+        <div class="formula-grid">
+          <div class="formula-item">
+            <div class="formula-color" style="background:#0052CC"></div>
+            <div class="formula-info">
+              <div class="formula-name">Integra Blue</div>
+              <div class="formula-hex">#0052CC</div>
+            </div>
+          </div>
+          <div class="formula-item">
+            <div class="formula-color" style="background:#3B82F6"></div>
+            <div class="formula-info">
+              <div class="formula-name">Blue Light</div>
+              <div class="formula-hex">#3B82F6</div>
+            </div>
+          </div>
+          <div class="formula-item">
+            <div class="formula-color" style="background:#2D3748"></div>
+            <div class="formula-info">
+              <div class="formula-name">Graphite</div>
+              <div class="formula-hex">#2D3748</div>
+            </div>
+          </div>
+          <div class="formula-item">
+            <div class="formula-color" style="background:#FFFFFF;border-bottom:1px solid #E5E7EB"></div>
+            <div class="formula-info">
+              <div class="formula-name">White</div>
+              <div class="formula-hex">#FFFFFF</div>
+            </div>
+          </div>
+          <div class="formula-item">
+            <div class="formula-color" style="background:#111827"></div>
+            <div class="formula-info">
+              <div class="formula-name">Deep Black</div>
+              <div class="formula-hex">#111827</div>
+            </div>
+          </div>
+          <div class="formula-item">
+            <div class="formula-color" style="background:#00B4D8"></div>
+            <div class="formula-info">
+              <div class="formula-name">Integra Cyan</div>
+              <div class="formula-hex">#00B4D8</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Export -->
+      <section class="section" id="export">
+        <div class="section-header">
+          <p class="section-tag">12 — Dev</p>
+          <h2>Экспорт токенов</h2>
+          <p>Готовые файлы для сайта, Figma-плагинов и design tokens pipeline.</p>
+        </div>
+
+        <div class="export-grid">
+          <div class="export-card">
+            <h4>tokens.css</h4>
+            <p>CSS-переменные + utility-классы (<code>.btn-primary</code>, <code>.text-h1</code>, <code>.container</code>). Подключить на любом HTML-странице.</p>
+            <a class="btn btn-primary" href="tokens.css" download>Скачать tokens.css</a>
+          </div>
+          <div class="export-card">
+            <h4>tokens.json</h4>
+            <p>Design Tokens Format — цвета, типографика, spacing, кнопки, логотип. Для Figma Tokens, Style Dictionary, Tailwind.</p>
+            <a class="btn btn-primary" href="tokens.json" download>Скачать tokens.json</a>
+          </div>
+        </div>
+
+        <div class="subsection" style="margin-top:40px">
+          <h3>Подключение на сайте</h3>
+          <div class="export-snippet"><span class="comment">&lt;!-- fonts + tokens --&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="val">"stylesheet"</span> <span class="attr">href</span>=<span class="val">"https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="val">"stylesheet"</span> <span class="attr">href</span>=<span class="val">"tokens.css"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- пример использования --&gt;</span>
+<span class="tag">&lt;h1</span> <span class="attr">class</span>=<span class="val">"text-h1"</span><span class="tag">&gt;</span>IntegraSystem<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;a</span> <span class="attr">class</span>=<span class="val">"btn-primary"</span> <span class="attr">href</span>=<span class="val">"#"</span><span class="tag">&gt;</span>Наши решения<span class="tag">&lt;/a&gt;</span>
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"container"</span><span class="tag">&gt;</span>...<span class="tag">&lt;/div&gt;</span></div>
+        </div>
+
+        <div class="subsection">
+          <h3>CSS-переменные</h3>
+          <div class="export-snippet"><span class="comment">/* цвета */</span>
+<span class="attr">color</span>: <span class="val">var(--integra-blue)</span>;
+<span class="attr">background</span>: <span class="val">var(--deep-black)</span>;
+
+<span class="comment">/* типографика */</span>
+<span class="attr">font-size</span>: <span class="val">var(--font-size-h2)</span>;
+<span class="attr">font-family</span>: <span class="val">var(--font-family)</span>;
+
+<span class="comment">/* spacing */</span>
+<span class="attr">padding</span>: <span class="val">var(--space-5)</span>;
+<span class="attr">max-width</span>: <span class="val">var(--max-width)</span>;</div>
+        </div>
+      </section>
+
+    </div>
+
+    <footer class="kit-footer">
+      IntegraSystem Brand Book & UI Kit v1.1 — Final &nbsp;·&nbsp; Inter &nbsp;·&nbsp; Enterprise B2B
+    </footer>
+  </div>
+</div>
+
+<div class="toast" id="toast">Скопировано!</div>
+
+<script>
+  document.querySelectorAll('.swatch, .dark-swatch').forEach(el => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', () => {
+      const hex = el.dataset.hex;
+      if (hex) {
+        navigator.clipboard.writeText(hex).then(showToast);
+      }
+    });
+  });
+
+  function showToast(msg = 'Скопировано!') {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 1800);
+  }
+
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.nav-list a');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
