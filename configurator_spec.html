@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IntegraSystem — Спецификация конфигуратора</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-family);
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--dark-gray);
+      background: var(--white);
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--white);
+      border-bottom: 1px solid var(--border-gray);
+    }
+
+    .header-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--integra-blue);
+      text-decoration: none;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .header-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--graphite);
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .source-note {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px 32px;
+      font-size: 13px;
+      color: var(--medium-gray);
+    }
+
+    .source-note a { color: var(--integra-blue); }
+
+    .loading, .error {
+      color: var(--medium-gray);
+      font-size: 15px;
+    }
+
+    .error {
+      color: #B91C1C;
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      border-radius: 8px;
+      padding: 16px 20px;
+    }
+
+    .error code {
+      font-size: 13px;
+      background: var(--white);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* Markdown styles */
+    .markdown h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--graphite);
+      line-height: 1.25;
+      margin: 0 0 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-gray);
+    }
+
+    .markdown h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--graphite);
+      margin: 40px 0 16px;
+    }
+
+    .markdown h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--graphite);
+      margin: 28px 0 12px;
+    }
+
+    .markdown h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--graphite);
+      margin: 20px 0 8px;
+    }
+
+    .markdown p { margin-bottom: 16px; }
+
+    .markdown strong {
+      font-weight: 600;
+      color: var(--graphite);
+    }
+
+    .markdown em { font-style: italic; }
+
+    .markdown hr {
+      border: none;
+      border-top: 1px solid var(--border-gray);
+      margin: 32px 0;
+    }
+
+    .markdown ul, .markdown ol {
+      margin: 0 0 16px 24px;
+    }
+
+    .markdown li { margin-bottom: 6px; }
+
+    .markdown li > ul, .markdown li > ol {
+      margin-top: 6px;
+      margin-bottom: 0;
+    }
+
+    .markdown blockquote {
+      margin: 16px 0;
+      padding: 12px 20px;
+      border-left: 3px solid var(--integra-cyan);
+      background: var(--light-gray);
+      color: var(--medium-gray);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .markdown code {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.9em;
+      background: var(--light-gray);
+      border: 1px solid var(--border-gray);
+      border-radius: 4px;
+      padding: 2px 6px;
+      color: var(--graphite);
+    }
+
+    .markdown pre {
+      margin: 16px 0;
+      padding: 20px;
+      background: var(--deep-black);
+      color: var(--dark-text);
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .markdown pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      color: inherit;
+      font-size: inherit;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <a class="back-link" href="index.html">← На главную</a>
+      <span class="header-title">Спецификация конфигуратора</span>
+      <a class="back-link" href="configurator_demo.html" style="margin-left:auto">Открыть демо →</a>
+    </div>
+  </header>
+
+  <main class="content">
+    <div id="spec" class="loading">Загрузка спецификации…</div>
+  </main>
+
+  <p class="source-note">
+    Источник: <a href="configurator_spec.md">configurator_spec.md</a> — правки только в этом файле.
+  </p>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    const SPEC_FILE = 'configurator_spec.md';
+    const container = document.getElementById('spec');
+
+    fetch(SPEC_FILE)
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.text();
+      })
+      .then((md) => {
+        container.className = 'markdown';
+        container.innerHTML = marked.parse(md);
+      })
+      .catch(() => {
+        container.className = 'error';
+        container.innerHTML = `
+          Не удалось загрузить <strong>${SPEC_FILE}</strong>.
+          Откройте страницу через локальный сервер из папки <code>demouikit</code>:<br><br>
+          <code>python3 -m http.server 8765</code><br><br>
+          Затем: <code>http://localhost:8765/configurator_spec.html</code>`;
+      });
+  </script>
+
+</body>
+</html>

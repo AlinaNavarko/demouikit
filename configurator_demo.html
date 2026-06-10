@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IntegraSystem — Конфигуратор (демо)</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="configurator_demo.css">
+</head>
+<body>
+
+  <header class="cfg-header">
+    <div class="cfg-header-inner">
+      <a class="cfg-logo" href="index.html">
+        <div class="cfg-logo-mark"><img src="favicon.svg" alt=""></div>
+        <div class="cfg-logo-text">
+          <span class="cfg-logo-integra">Integra</span>
+          <span class="cfg-logo-system">System</span>
+        </div>
+      </a>
+      <nav class="cfg-stepper" id="stepper" aria-label="Шаги конфигуратора"></nav>
+      <a class="cfg-back" href="configurator_spec.html">Спецификация</a>
+    </div>
+  </header>
+
+  <section class="cfg-hero" id="hero"></section>
+
+  <main class="cfg-main">
+    <div id="app"></div>
+  </main>
+
+  <div class="cfg-overlay" id="modal-overlay"></div>
+
+  <script src="configurator_demo.js"></script>
+</body>
+</html>
