@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forte SYSTEM — Demo Hub</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@700&family=Unbounded:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-family);
+      color: var(--dark-gray);
+      background: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .page { flex: 1; display: flex; align-items: center; justify-content: center; padding: 48px 24px; }
+    .hub { max-width: 560px; width: 100%; text-align: center; }
+    .logo { display: inline-block; height: 48px; margin-bottom: 40px; }
+    .logo img { height: 100%; width: auto; }
+    .hub h1 { font-family: var(--font-family-display); font-size: 28px; font-weight: 500; color: var(--graphite); margin-bottom: 12px; }
+    .hub p { font-size: 17px; color: var(--medium-gray); margin-bottom: 40px; }
+    .links { display: flex; flex-direction: column; gap: 16px; }
+    .link-card {
+      display: block; padding: 24px 28px; background: var(--light-gray);
+      border: 1px solid var(--border-gray); border-radius: 16px;
+      text-decoration: none; text-align: left;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .link-card:hover { border-color: var(--integra-blue); box-shadow: var(--soft-shadow); }
+    .link-card h2 { font-family: var(--font-family-display); font-size: 18px; font-weight: 500; color: var(--graphite); margin-bottom: 6px; }
+    .link-card span { font-size: 15px; color: var(--medium-gray); }
+    .footer { padding: 24px; text-align: center; font-size: 14px; color: var(--medium-gray); border-top: 1px solid var(--border-gray); }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="hub">
+      <a class="logo" href="index.html"><img src="images/general/forte-logo-light.svg" alt="FORTE SYSTEM"></a>
+      <h1>Демо-материалы</h1>
+      <p>Сайт, UI Kit, спецификация и конфигуратор</p>
+      <nav class="links">
+        <a class="link-card" href="index.html"><h2>Сайт</h2><span>Главная страница по макету Figma</span></a>
+        <a class="link-card" href="uikit.html"><h2>UI Kit</h2><span>Цвета, типографика, кнопки, токены</span></a>
+        <a class="link-card" href="configurator_spec.html"><h2>Спецификация конфигуратора</h2><span>Требования к серверам и СХД</span></a>
+        <a class="link-card" href="configurator_demo.html"><h2>Конфигуратор (демо)</h2><span>Интерактивный прототип — 3 шага</span></a>
+      </nav>
+    </div>
+  </main>
+  <footer class="footer">© 2026 ForteSystem · <a href="mailto:info@fortesystem.by">info@fortesystem.by</a></footer>
+</body>
+</html>

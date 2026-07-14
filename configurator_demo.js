@@ -526,7 +526,7 @@
       <div class="cfg-success cfg-step-view">
         <div class="cfg-success-icon">${ICONS.check}</div>
         <h2>Заявка отправлена</h2>
-        <p>Менеджер IntegraSystem свяжется с вами для подготовки коммерческого предложения.</p>
+        <p>Менеджер Forte SYSTEM свяжется с вами для подготовки коммерческого предложения.</p>
         <button type="button" class="btn-primary" data-action="new">Новая заявка</button>
       </div>`;
   }
@@ -821,9 +821,9 @@
       }
     };
 
-    const stored = JSON.parse(localStorage.getItem('integra_requests') || '[]');
+    const stored = JSON.parse(localStorage.getItem('forte_requests') || localStorage.getItem('integra_requests') || '[]');
     stored.push(request);
-    localStorage.setItem('integra_requests', JSON.stringify(stored));
+    localStorage.setItem('forte_requests', JSON.stringify(stored));
 
     closeModal();
     state.submitted = true;

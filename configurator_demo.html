@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IntegraSystem — Конфигуратор (демо)</title>
+  <title>Forte SYSTEM — Конфигуратор</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="configurator_demo.css">
 </head>
@@ -15,12 +15,8 @@
 
   <header class="cfg-header">
     <div class="cfg-header-inner">
-      <a class="cfg-logo" href="index.html">
-        <div class="cfg-logo-mark"><img src="favicon.svg" alt=""></div>
-        <div class="cfg-logo-text">
-          <span class="cfg-logo-integra">Integra</span>
-          <span class="cfg-logo-system">System</span>
-        </div>
+      <a class="cfg-logo" href="index.html" aria-label="Forte SYSTEM">
+        <img class="cfg-logo-img" src="images/general/forte-logo-light.svg" alt="FORTE SYSTEM">
       </a>
       <nav class="cfg-stepper" id="stepper" aria-label="Шаги конфигуратора"></nav>
       <a class="cfg-back" href="configurator_spec.html">Спецификация</a>
@@ -32,6 +28,19 @@
   <main class="cfg-main">
     <div id="app"></div>
   </main>
+
+  <footer class="cfg-footer">
+    <div class="cfg-footer-inner">
+      <div>
+        <p class="cfg-footer-legal">Forte SYSTEM</p>
+        <p class="cfg-footer-copy">© 2026 ForteSystem · 220024, г. Минск, ул. Серова, д. 2А, кб. 31В</p>
+      </div>
+      <div class="cfg-footer-contacts">
+        <a href="mailto:info@fortesystem.by">info@fortesystem.by</a>
+        <a href="tel:+375291111111">+375 29 111-11-11</a>
+      </div>
+    </div>
+  </footer>
 
   <div class="cfg-overlay" id="modal-overlay"></div>
 

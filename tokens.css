@@ -1,5 +1,6 @@
 /**
- * IntegraSystem Design Tokens v1.1
+ * Forte SYSTEM Design Tokens
+ * Source: Figma — Alina's team library (node 3796:3387)
  * Import: <link rel="stylesheet" href="tokens.css">
  */
 
@@ -8,21 +9,28 @@
   --integra-blue: #0052CC;
   --integra-blue-hover: #0045AD;
   --integra-blue-light: #3B82F6;
-  --integra-cyan: #00B4D8;
+  --integra-cyan: #4D9AFF;
 
   /* ── Neutral ── */
   --graphite: #2D3748;
-  --dark-gray: #4A5568;
+  --heading-dark: #1A202C;
+  --dark-gray: #444F61;
   --medium-gray: #68737A;
-  --border-gray: #E5E7EB;
+  --border-gray: #E5EAF2;
   --light-gray: #F8FAFC;
+  --mist-blue: #EFF6FF;
   --white: #FFFFFF;
 
-  /* ── Dark theme ── */
-  --deep-black: #111827;
-  --dark-surface: #1F2937;
-  --dark-border: #374151;
-  --dark-text: #E5E7EB;
+  /* ── Dark theme / footer ── */
+  --deep-black: #111418;
+  --dark-surface: #1A1D22;
+  --dark-border: #2A2F38;
+  --dark-text: #E8EAED;
+
+  /* ── Atmosphere ── */
+  --soft-shadow: -4px 0 8px rgba(77, 154, 255, 0.08), 0 8px 24px rgba(77, 154, 255, 0.08);
+  --soft-shadow-hover: -4px 0 10px rgba(77, 154, 255, 0.12), 0 12px 32px rgba(77, 154, 255, 0.14);
+  --btn-shadow: 0 8px 16px rgba(31, 38, 135, 0.15);
 
   /* ── Semantic aliases ── */
   --color-primary: var(--integra-blue);
@@ -36,15 +44,17 @@
   --color-surface: var(--light-gray);
   --color-background: var(--white);
 
-  /* ── Typography ── */
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-family-alt-1: 'Montserrat', sans-serif;
-  --font-family-alt-2: 'Manrope', sans-serif;
+  /* ── Typography (Figma) ── */
+  --font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-display: 'Unbounded', 'Manrope', sans-serif;
+  --font-family-logo: 'Syne', 'Unbounded', sans-serif;
+  --font-family-alt-1: 'Syne', sans-serif;
+  --font-family-alt-2: 'Unbounded', sans-serif;
 
-  --font-size-h1: 56px;
-  --font-size-h2: 40px;
-  --font-size-h3: 32px;
-  --font-size-h4: 24px;
+  --font-size-h1: 46px;
+  --font-size-h2: 30px;
+  --font-size-h3: 24px;
+  --font-size-h4: 18px;
   --font-size-body: 18px;
   --font-size-small: 14px;
 
@@ -70,37 +80,33 @@
   --space-6: 64px;
   --space-7: 96px;
 
-  /* ── Radius ── */
-  --radius-sm: 6px;
-  --radius: 10px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
+  /* ── Radius (Figma: cards 16, buttons ~28) ── */
+  --radius-sm: 10px;
+  --radius: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-pill: 28px;
 
   /* ── Buttons ── */
   --btn-primary-bg: var(--integra-blue);
   --btn-primary-bg-hover: var(--integra-blue-hover);
   --btn-primary-color: var(--white);
-  --btn-primary-radius: var(--radius);
+  --btn-primary-radius: var(--radius-pill);
 
-  --btn-secondary-bg: transparent;
-  --btn-secondary-border: 1px solid var(--integra-blue);
+  --btn-secondary-bg: rgba(255, 255, 255, 0.45);
+  --btn-secondary-border: 1px solid rgba(37, 105, 177, 0.18);
   --btn-secondary-color: var(--integra-blue);
 
   /* ── Icons ── */
   --icon-color: var(--integra-blue);
   --icon-stroke-width: 1.5;
 
-  /* ── Logo (light background) ── */
-  --logo-mark-bg-light: var(--integra-blue);
-  --logo-mark-color-light: var(--white);
-  --logo-integra-color-light: var(--graphite);
-  --logo-system-color-light: var(--integra-blue);
-
-  /* ── Logo (dark background) ── */
-  --logo-mark-bg-dark: var(--integra-blue);
-  --logo-mark-color-dark: var(--white);
-  --logo-integra-color-dark: var(--white);
-  --logo-system-color-dark: var(--integra-blue-light);
+  /* ── Logo (Figma 3839:39) ── */
+  --logo-graphite: #262323;
+  --logo-mark-bg-light: var(--logo-graphite);
+  --logo-mark-color-light: var(--logo-graphite);
+  --logo-on-light: var(--logo-graphite);
+  --logo-on-dark: var(--white);
 }
 
 /* ── Utility classes ── */
@@ -109,48 +115,54 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 28px;
-  font-family: var(--font-family);
-  font-size: 16px;
-  font-weight: var(--font-weight-semibold);
+  gap: 10px;
+  padding: 15px 31px;
+  font-family: var(--font-family-display);
+  font-size: 15px;
+  font-weight: var(--font-weight-regular);
   background: var(--btn-primary-bg);
   color: var(--btn-primary-color);
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--btn-primary-radius);
   cursor: pointer;
   text-decoration: none;
-  transition: background 0.15s;
+  box-shadow: var(--btn-shadow);
+  transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
 }
 
 .btn-primary:hover {
   background: var(--btn-primary-bg-hover);
+  box-shadow: 0 10px 22px rgba(31, 38, 135, 0.22);
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 28px;
-  font-family: var(--font-family);
-  font-size: 16px;
-  font-weight: var(--font-weight-semibold);
+  padding: 15px 31px;
+  font-family: var(--font-family-display);
+  font-size: 15px;
+  font-weight: var(--font-weight-regular);
   background: var(--btn-secondary-bg);
   color: var(--btn-secondary-color);
   border: var(--btn-secondary-border);
   border-radius: var(--btn-primary-radius);
   cursor: pointer;
   text-decoration: none;
-  transition: background 0.15s;
+  backdrop-filter: blur(8px);
+  transition: background 0.15s, border-color 0.15s;
 }
 
 .btn-secondary:hover {
-  background: rgba(0, 82, 204, 0.06);
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 82, 204, 0.28);
 }
 
-.text-h1 { font-size: var(--font-size-h1); font-weight: var(--font-weight-bold); color: var(--color-heading); line-height: 1.1; }
-.text-h2 { font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); color: var(--color-heading); line-height: var(--line-height-heading); }
-.text-h3 { font-size: var(--font-size-h3); font-weight: var(--font-weight-semibold); color: var(--color-heading); line-height: 1.25; }
-.text-h4 { font-size: var(--font-size-h4); font-weight: var(--font-weight-semibold); color: var(--color-heading); line-height: 1.3; }
+.text-h1 { font-family: var(--font-family-display); font-size: var(--font-size-h1); font-weight: var(--font-weight-semibold); color: var(--heading-dark); line-height: 1.15; }
+.text-h2 { font-family: var(--font-family-display); font-size: var(--font-size-h2); font-weight: var(--font-weight-medium); color: var(--color-heading); line-height: var(--line-height-heading); }
+.text-h3 { font-family: var(--font-family-display); font-size: var(--font-size-h3); font-weight: var(--font-weight-medium); color: var(--color-heading); line-height: 1.25; }
+.text-h4 { font-family: var(--font-family-display); font-size: var(--font-size-h4); font-weight: var(--font-weight-medium); color: var(--color-heading); line-height: 1.3; }
 .text-body { font-size: var(--font-size-body); color: var(--color-text); line-height: var(--line-height-body); }
 .text-small { font-size: var(--font-size-small); color: var(--color-text-secondary); }
 
