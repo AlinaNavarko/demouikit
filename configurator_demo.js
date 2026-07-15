@@ -747,7 +747,7 @@
                 </div>
                 <div class="cfg-form-row">
                   <label>Комментарий</label>
-                  <textarea class="cfg-textarea" name="comment"></textarea>
+                  <textarea class="cfg-textarea" name="comment" placeholder="Кратко опишите ваш проект или вопрос"></textarea>
                 </div>
                 <label class="cfg-checkbox-row">
                   <input type="checkbox" name="copy">
