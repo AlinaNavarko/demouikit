@@ -818,16 +818,11 @@ textarea {
   position: relative;
   padding: 90px 0 90px;
   overflow: hidden;
-  background: linear-gradient(180deg, #eff6ff 0%, #ffffff 55%);
+  background: #fff url("images/site/contact-bg.png") center / cover no-repeat;
 }
 
 .contact::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("images/site/hero-bg.png") center / cover no-repeat;
-  opacity: 0.1;
-  pointer-events: none;
+  display: none;
 }
 
 .contact__inner {
@@ -944,9 +939,10 @@ textarea {
 }
 
 .contact-form {
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(229, 234, 242, 0.9);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 24px;
   padding: 28px;
   box-shadow: var(--soft-shadow);
